@@ -78,83 +78,83 @@
 	var moon = createMoon(radiuses.Moon, segments);
     moon.position.set(distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius);
     moon.rotation.y = rotation;
-    var moonOTL = createOutlineMesh(radiuses.Moon, segments);
+    /*var moonOTL = createOutlineMesh(radiuses.Moon, segments);
     moonOTL.position.set(distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius);
-    moonOTL.scale.multiplyScalar(1.01);
+    moonOTL.scale.multiplyScalar(1.01);*/
     scene.add(moon);
-    scene.add(moonOTL);
+    //scene.add(moonOTL);
 
     var sun1 = createSun(radiuses.Sun, segments);
     sun1.position.set(distances.Earth, distances.Earth, distances.Earth);    
     sun1.rotation.y = rotation;
-    var sunOTL = createOutlineMesh(radiuses.Sun, segments);
+    /*var sunOTL = createOutlineMesh(radiuses.Sun, segments);
     sunOTL.position.set(distances.Earth, distances.Earth, distances.Earth);
-    sunOTL.scale.multiplyScalar(1.01);
+    sunOTL.scale.multiplyScalar(1.01);*/
     scene.add(sun1);
-    scene.add(sunOTL);
+    //scene.add(sunOTL);
 
     var mercury = createMercury(radiuses.Mercury, segments);
     mercury.position.set(10 - distances.Mercury, 10 - distances.Mercury, 10 - distances.Mercury);    
     mercury.rotation.y = rotation;
-    var mercuryOTL = createOutlineMesh(radiuses.Mercury, segments);
+    /*var mercuryOTL = createOutlineMesh(radiuses.Mercury, segments);
     mercuryOTL.position.set(10 - distances.Mercury, 10 - distances.Mercury, 10 - distances.Mercury);
-    mercuryOTL.scale.multiplyScalar(1.01);
+    mercuryOTL.scale.multiplyScalar(1.01);*/
     scene.add(mercury);
-    scene.add(mercuryOTL);
+    //scene.add(mercuryOTL);
 
     var venus = createVenus(radiuses.Venus, segments);
     venus.position.set(10 - distances.Venus, 10 - distances.Venus, 10 - distances.Venus);    
     venus.rotation.y = rotation;
-    var venusOTL = createOutlineMesh(radiuses.Venus, segments);
+    /*var venusOTL = createOutlineMesh(radiuses.Venus, segments);
     venusOTL.position.set(10 - distances.Venus, 10 - distances.Venus, 10 - distances.Venus);
-    venusOTL.scale.multiplyScalar(1.01);
+    venusOTL.scale.multiplyScalar(1.01);*/
     scene.add(venus);
-    scene.add(venusOTL);
+    //scene.add(venusOTL);
 
     var mars = createMars(radiuses.Mars, segments);
     mars.position.set(10 - distances.Mars, 10 - distances.Mars, 10 - distances.Mars);    
     mars.rotation.y = rotation;
-    var marsOTL = createOutlineMesh(radiuses.Mars, segments);
+    /*var marsOTL = createOutlineMesh(radiuses.Mars, segments);
     marsOTL.position.set(10 - distances.Mars, 10 - distances.Mars, 10 - distances.Mars);
-    marsOTL.scale.multiplyScalar(1.01);
+    marsOTL.scale.multiplyScalar(1.01);*/
     scene.add(mars);
-    scene.add(marsOTL);
+    //scene.add(marsOTL);
 
     var jupiter = createJupiter(radiuses.Jupiter, segments);
     jupiter.position.set(10 - distances.Jupiter, 10 - distances.Jupiter, 10 - distances.Jupiter);    
     jupiter.rotation.y = rotation;
-    var jupiterOTL = createOutlineMesh(radiuses.Jupiter, segments);
+    /*var jupiterOTL = createOutlineMesh(radiuses.Jupiter, segments);
     jupiterOTL.position.set(10 - distances.Jupiter, 10 - distances.Jupiter, 10 - distances.Jupiter);
-    jupiterOTL.scale.multiplyScalar(1.01);
+    jupiterOTL.scale.multiplyScalar(1.01);*/
     scene.add(jupiter);
-    scene.add(jupiterOTL);
+    //scene.add(jupiterOTL);
 
     var saturn = createSaturn(radiuses.Saturn, segments);
     saturn.position.set(10 - distances.Saturn, 10 - distances.Saturn, 10 - distances.Saturn);    
     saturn.rotation.y = rotation;
-    var saturnOTL = createOutlineMesh(radiuses.Saturn, segments);
+    /*var saturnOTL = createOutlineMesh(radiuses.Saturn, segments);
     saturnOTL.position.set(10 - distances.Saturn, 10 - distances.Saturn, 10 - distances.Saturn);
-    saturnOTL.scale.multiplyScalar(1.01);
+    saturnOTL.scale.multiplyScalar(1.01);*/
     scene.add(saturn);
-    scene.add(saturnOTL);
+    //scene.add(saturnOTL);
 
     var uranus = createUranus(radiuses.Uranus, segments);
     uranus.position.set(10 - distances.Uranus, 10 - distances.Uranus, 10 - distances.Uranus);    
     uranus.rotation.y = rotation;
-    var uranusOTL = createOutlineMesh(radiuses.Uranus, segments);
+    /*var uranusOTL = createOutlineMesh(radiuses.Uranus, segments);
     uranusOTL.position.set(10 - distances.Uranus, 10 - distances.Uranus, 10 - distances.Uranus);
-    uranusOTL.scale.multiplyScalar(1.01);
+    uranusOTL.scale.multiplyScalar(1.01);*/
     scene.add(uranus);
-    scene.add(uranusOTL);
+    //scene.add(uranusOTL);
 
     var neptune = createNeptune(radiuses.Neptune, segments);
     neptune.position.set(10 - distances.Neptune, 10 - distances.Neptune, 10 - distances.Neptune);    
     neptune.rotation.y = rotation;
-    var neptuneOTL = createOutlineMesh(radiuses.Neptune, segments);
+    /*var neptuneOTL = createOutlineMesh(radiuses.Neptune, segments);
     neptuneOTL.position.set(10 - distances.Neptune, 10 - distances.Neptune, 10 - distances.Neptune);
-    neptuneOTL.scale.multiplyScalar(1.01);
+    neptuneOTL.scale.multiplyScalar(1.01);*/
     scene.add(neptune);
-    scene.add(neptuneOTL);
+    //scene.add(neptuneOTL);
 
     var cloud = createClouds(radius, segments);
 	cloud.rotation.y = rotation;
