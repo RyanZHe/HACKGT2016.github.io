@@ -21,16 +21,16 @@
 	};
 
 	var radiuses = {
-		Mercury: 0.01630370796,
-		Venus: 0.04045512118,
-		Earth: 0.04263429658,
-		Mars: 0.02268414635,
-		Jupiter: 0.4772661504,
-		Saturn: 0.4032811403,
-		Uranus: 0.1708513619,
-		Neptune: 0.1624354667,
+		Mercury: 0.01630370796 * 5,
+		Venus: 0.04045512118 * 5,
+		Earth: 0.04263429658 * 5,
+		Mars: 0.02268414635 * 5,
+		Jupiter: 0.4772661504 * 5,
+		Saturn: 0.4032811403 * 5,
+		Uranus: 0.1708513619 * 5,
+		Neptune: 0.1624354667 * 5,
 		Sun: 4.65046792,
-		Moon: 0.01160444322
+		Moon: 0.01160444322 * 5
 	};
 
 	if (!Detector.webgl) {
@@ -42,8 +42,8 @@
 		height = window.innerHeight;
 
 	// Earth params
-	var radius   = 0.04263429658,
-		segments = 256,
+	var radius   = 0.04263429658 * 5,
+		segments = 64,
 		rotation = 6;  
 
 	var rendered = false;
@@ -76,10 +76,10 @@
 	scene.add(sphere);
 
 	var moon = createMoon(radiuses.Moon, segments);
-    moon.position.set(distances.Moon + radiuses.Moon, distances.Moon + radiuses.Moon, distances.Moon + radiuses.Moon);
+    moon.position.set(distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius);
     moon.rotation.y = rotation;
     var moonOTL = createOutlineMesh(radiuses.Moon, segments);
-    moonOTL.position = moon.position;
+    moonOTL.position.set(distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius);
     moonOTL.scale.multiplyScalar(1.01);
     scene.add(moon);
     scene.add(moonOTL);
@@ -92,6 +92,69 @@
     sunOTL.scale.multiplyScalar(1.01);
     scene.add(sun1);
     scene.add(sunOTL);
+
+    var mercury = createMercury(radiuses.Mercury, segments);
+    mercury.position.set(10 - distances.Mercury, 10 - distances.Mercury, 10 - distances.Mercury);    
+    mercury.rotation.y = rotation;
+    var mercuryOTL = createOutlineMesh(radiuses.Mercury, segments);
+    mercuryOTL.position.set(10 - distances.Mercury, 10 - distances.Mercury, 10 - distances.Mercury);
+    mercuryOTL.scale.multiplyScalar(1.01);
+    scene.add(mercury);
+    scene.add(mercuryOTL);
+
+    var venus = createVenus(radiuses.Venus, segments);
+    venus.position.set(10 - distances.Venus, 10 - distances.Venus, 10 - distances.Venus);    
+    venus.rotation.y = rotation;
+    var venusOTL = createOutlineMesh(radiuses.Venus, segments);
+    venusOTL.position.set(10 - distances.Venus, 10 - distances.Venus, 10 - distances.Venus);
+    venusOTL.scale.multiplyScalar(1.01);
+    scene.add(venus);
+    scene.add(venusOTL);
+
+    var mars = createMars(radiuses.Mars, segments);
+    mars.position.set(10 - distances.Mars, 10 - distances.Mars, 10 - distances.Mars);    
+    mars.rotation.y = rotation;
+    var marsOTL = createOutlineMesh(radiuses.Mars, segments);
+    marsOTL.position.set(10 - distances.Mars, 10 - distances.Mars, 10 - distances.Mars);
+    marsOTL.scale.multiplyScalar(1.01);
+    scene.add(mars);
+    scene.add(marsOTL);
+
+    var jupiter = createJupiter(radiuses.Jupiter, segments);
+    jupiter.position.set(10 - distances.Jupiter, 10 - distances.Jupiter, 10 - distances.Jupiter);    
+    jupiter.rotation.y = rotation;
+    var jupiterOTL = createOutlineMesh(radiuses.Jupiter, segments);
+    jupiterOTL.position.set(10 - distances.Jupiter, 10 - distances.Jupiter, 10 - distances.Jupiter);
+    jupiterOTL.scale.multiplyScalar(1.01);
+    scene.add(jupiter);
+    scene.add(jupiterOTL);
+
+    var saturn = createSaturn(radiuses.Saturn, segments);
+    saturn.position.set(10 - distances.Saturn, 10 - distances.Saturn, 10 - distances.Saturn);    
+    saturn.rotation.y = rotation;
+    var saturnOTL = createOutlineMesh(radiuses.Saturn, segments);
+    saturnOTL.position.set(10 - distances.Saturn, 10 - distances.Saturn, 10 - distances.Saturn);
+    saturnOTL.scale.multiplyScalar(1.01);
+    scene.add(saturn);
+    scene.add(saturnOTL);
+
+    var uranus = createUranus(radiuses.Uranus, segments);
+    uranus.position.set(10 - distances.Uranus, 10 - distances.Uranus, 10 - distances.Uranus);    
+    uranus.rotation.y = rotation;
+    var uranusOTL = createOutlineMesh(radiuses.Uranus, segments);
+    uranusOTL.position.set(10 - distances.Uranus, 10 - distances.Uranus, 10 - distances.Uranus);
+    uranusOTL.scale.multiplyScalar(1.01);
+    scene.add(uranus);
+    scene.add(uranusOTL);
+
+    var neptune = createNeptune(radiuses.Neptune, segments);
+    neptune.position.set(10 - distances.Neptune, 10 - distances.Neptune, 10 - distances.Neptune);    
+    neptune.rotation.y = rotation;
+    var neptuneOTL = createOutlineMesh(radiuses.Neptune, segments);
+    neptuneOTL.position.set(10 - distances.Neptune, 10 - distances.Neptune, 10 - distances.Neptune);
+    neptuneOTL.scale.multiplyScalar(1.01);
+    scene.add(neptune);
+    scene.add(neptuneOTL);
 
     var cloud = createClouds(radius, segments);
 	cloud.rotation.y = rotation;
@@ -187,7 +250,7 @@
 		return new THREE.Mesh(
 			new THREE.SphereGeometry(radius, segments, segments),
 			new THREE.MeshPhongMaterial({
-				map:         THREE.ImageUtils.loadTexture('images/700328main_20121014_003615_flat.jpg'),								
+				map:         THREE.ImageUtils.loadTexture('images/Mercury.jpg'),								
 			})
 		);
 	}
@@ -197,7 +260,7 @@
 		return new THREE.Mesh(
 			new THREE.SphereGeometry(radius, segments, segments),
 			new THREE.MeshPhongMaterial({
-				map:         THREE.ImageUtils.loadTexture('images/700328main_20121014_003615_flat.jpg'),								
+				map:         THREE.ImageUtils.loadTexture('images/Venus.jpg'),								
 			})
 		);
 	}
@@ -207,7 +270,7 @@
 		return new THREE.Mesh(
 			new THREE.SphereGeometry(radius, segments, segments),
 			new THREE.MeshPhongMaterial({
-				map:         THREE.ImageUtils.loadTexture('images/700328main_20121014_003615_flat.jpg'),								
+				map:         THREE.ImageUtils.loadTexture('images/Mars.jpg'),								
 			})
 		);
 	}
@@ -217,7 +280,7 @@
 		return new THREE.Mesh(
 			new THREE.SphereGeometry(radius, segments, segments),
 			new THREE.MeshPhongMaterial({
-				map:         THREE.ImageUtils.loadTexture('images/700328main_20121014_003615_flat.jpg'),								
+				map:         THREE.ImageUtils.loadTexture('images/Jupiter.jpg'),								
 			})
 		);
 	}
@@ -227,7 +290,7 @@
 		return new THREE.Mesh(
 			new THREE.SphereGeometry(radius, segments, segments),
 			new THREE.MeshPhongMaterial({
-				map:         THREE.ImageUtils.loadTexture('images/700328main_20121014_003615_flat.jpg'),								
+				map:         THREE.ImageUtils.loadTexture('images/Saturn.jpg'),								
 			})
 		);
 	}
@@ -237,7 +300,7 @@
 		return new THREE.Mesh(
 			new THREE.SphereGeometry(radius, segments, segments),
 			new THREE.MeshPhongMaterial({
-				map:         THREE.ImageUtils.loadTexture('images/700328main_20121014_003615_flat.jpg'),								
+				map:         THREE.ImageUtils.loadTexture('images/Uranus.jpg'),								
 			})
 		);
 	}
@@ -247,7 +310,7 @@
 		return new THREE.Mesh(
 			new THREE.SphereGeometry(radius, segments, segments),
 			new THREE.MeshPhongMaterial({
-				map:         THREE.ImageUtils.loadTexture('images/700328main_20121014_003615_flat.jpg'),								
+				map:         THREE.ImageUtils.loadTexture('images/Neptune.jpg'),								
 			})
 		);
 	}
