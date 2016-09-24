@@ -21,17 +21,30 @@
 	};
 
 	var radiuses = {
-		Mercury: 0.01630370796 * 5,
-		Venus: 0.04045512118 * 5,
-		Earth: 0.04263429658 * 5,
-		Mars: 0.02268414635 * 5,
-		Jupiter: 0.4772661504 * 5,
-		Saturn: 0.4032811403 * 5,
-		Uranus: 0.1708513619 * 5,
-		Neptune: 0.1624354667 * 5,
-		Sun: 4.65046792,
-		Moon: 0.01160444322 * 5
+		Mercury: 0.01630370796,
+		Venus: 0.04045512118,
+		Earth: 0.04263429658,
+		Mars: 0.02268414635,
+		Jupiter: 0.4772661504,
+		Saturn: 0.4032811403,
+		Uranus: 0.1708513619,
+		Neptune: 0.1624354667,
+		Sun: 4.65046792 * (4/5),
+		Moon: 0.01160444322
 	};
+
+	var multipliyer = {
+		Mercury: 5,
+		Venus: 5,
+		Earth: 5,
+		Mars: 5,
+		Jupiter: 5,
+		Saturn: 5,
+		Uranus: 5,
+		Neptune: 5,
+		Sun: 1,
+		Moon: 5
+	}
 
 	var speeds =  {
 		Mercury: 0.018,
@@ -88,7 +101,7 @@
     sphere.rotation.y = rotation; 
 	scene.add(sphere);
 
-	var moon = createMoon(radiuses.Moon, segments);
+	var moon = createMoon(radiuses.Moon * multipliyer.Moon, segments);
     moon.position.set(distances.Moon + radiuses.Moon + radius, 0, 0);
     moon.rotation.y = rotation;
     /*var moonOTL = createOutlineMesh(radiuses.Moon, segments);
@@ -97,7 +110,7 @@
     scene.add(moon);
     //scene.add(moonOTL);
 
-    var sun1 = createSun(radiuses.Sun, segments);
+    var sun1 = createSun(radiuses.Sun * multipliyer.Sun, segments);
     sun1.position.set(distances.Earth, 0, 0);    
     sun1.rotation.y = rotation;
     /*var sunOTL = createOutlineMesh(radiuses.Sun, segments);
@@ -106,7 +119,7 @@
     scene.add(sun1);
     //scene.add(sunOTL);
 
-    var mercury = createMercury(radiuses.Mercury, segments);
+    var mercury = createMercury(radiuses.Mercury * multipliyer.Mercury, segments);
     mercury.position.set(10 - distances.Mercury, 0, 0);    
     mercury.rotation.y = rotation;
     /*var mercuryOTL = createOutlineMesh(radiuses.Mercury, segments);
@@ -115,7 +128,7 @@
     scene.add(mercury);
     //scene.add(mercuryOTL);
 
-    var venus = createVenus(radiuses.Venus, segments);
+    var venus = createVenus(radiuses.Venus * multipliyer.Venus, segments);
     venus.position.set(10 - distances.Venus, 0, 0);    
     venus.rotation.y = rotation;
     /*var venusOTL = createOutlineMesh(radiuses.Venus, segments);
@@ -124,7 +137,7 @@
     scene.add(venus);
     //scene.add(venusOTL);
 
-    var mars = createMars(radiuses.Mars, segments);
+    var mars = createMars(radiuses.Mars * multipliyer.Mars, segments);
     mars.position.set(10 - distances.Mars, 0, 0);    
     mars.rotation.y = rotation;
     /*var marsOTL = createOutlineMesh(radiuses.Mars, segments);
@@ -133,7 +146,7 @@
     scene.add(mars);
     //scene.add(marsOTL);
 
-    var jupiter = createJupiter(radiuses.Jupiter, segments);
+    var jupiter = createJupiter(radiuses.Jupiter * multipliyer.Jupiter, segments);
     jupiter.position.set(10 - distances.Jupiter, 0, 0);    
     jupiter.rotation.y = rotation;
     /*var jupiterOTL = createOutlineMesh(radiuses.Jupiter, segments);
@@ -142,7 +155,7 @@
     scene.add(jupiter);
     //scene.add(jupiterOTL);
 
-    var saturn = createSaturn(radiuses.Saturn, segments);
+    var saturn = createSaturn(radiuses.Saturn * multipliyer.Saturn, segments);
     saturn.position.set(10 - distances.Saturn, 0, 0);    
     saturn.rotation.y = rotation;
     /*var saturnOTL = createOutlineMesh(radiuses.Saturn, segments);
@@ -151,7 +164,7 @@
     scene.add(saturn);
     //scene.add(saturnOTL);
 
-    var uranus = createUranus(radiuses.Uranus, segments);
+    var uranus = createUranus(radiuses.Uranus * multipliyer.Uranus, segments);
     uranus.position.set(10 - distances.Uranus, 0, 0);    
     uranus.rotation.y = rotation;
     /*var uranusOTL = createOutlineMesh(radiuses.Uranus, segments);
@@ -160,7 +173,7 @@
     scene.add(uranus);
     //scene.add(uranusOTL);
 
-    var neptune = createNeptune(radiuses.Neptune, segments);
+    var neptune = createNeptune(radiuses.Neptune * multipliyer.Neptune, segments);
     neptune.position.set(10 - distances.Neptune, 0, 0);    
     neptune.rotation.y = rotation;
     /*var neptuneOTL = createOutlineMesh(radiuses.Neptune, segments);
@@ -411,17 +424,29 @@
 	}
 
 	var gui = new dat.GUI();
-	var speedGUI = gui.addFolder('speed');
-	speedGUI.add(speeds, 'Mercury', -0.006, 0.006);
-	speedGUI.add(speeds, 'Venus', -0.006, 0.006);
-	speedGUI.add(speeds, 'Earth', -0.006, 0.006);
-	speedGUI.add(speeds, 'Mars', -0.006, 0.006);
-	speedGUI.add(speeds, 'Jupiter', -0.006, 0.006);
-	speedGUI.add(speeds, 'Saturn', -0.006, 0.006);
-	speedGUI.add(speeds, 'Uranus', -0.006, 0.006);
-	speedGUI.add(speeds, 'Neptune', -0.006, 0.006);
-	speedGUI.add(speeds, 'Sun', -0.006, 0.006);
-	speedGUI.add(speeds, 'Moon', -0.006, 0.006);
+	var speedGUI = gui.addFolder('Self-rotation Speed');
+	speedGUI.add(speeds, 'Mercury', -0.06, 0.06);
+	speedGUI.add(speeds, 'Venus', -0.06, 0.06);
+	speedGUI.add(speeds, 'Earth', -0.06, 0.06);
+	speedGUI.add(speeds, 'Mars', -0.06, 0.06);
+	speedGUI.add(speeds, 'Jupiter', -0.06, 0.06);
+	speedGUI.add(speeds, 'Saturn', -0.06, 0.06);
+	speedGUI.add(speeds, 'Uranus', -0.06, 0.06);
+	speedGUI.add(speeds, 'Neptune', -0.06, 0.06);
+	speedGUI.add(speeds, 'Sun', -0.06, 0.06);
+	speedGUI.add(speeds, 'Moon', -0.06, 0.06);
+	/*var radiusGUI = gui.addFolder('Radius');
+	radiusGUI.add(multipliyer, 'Mercury', 1, 5);
+	radiusGUI.add(multipliyer, 'Venus', 1, 5);
+	radiusGUI.add(multipliyer, 'Earth', 1, 5);
+	radiusGUI.add(multipliyer, 'Mars', 1, 5);
+	radiusGUI.add(multipliyer, 'Jupiter', 1, 5);
+	radiusGUI.add(multipliyer, 'Saturn', 1, 5);
+	radiusGUI.add(multipliyer, 'Uranus', 1, 5);
+	radiusGUI.add(multipliyer, 'Neptune', 1, 5);
+	radiusGUI.add(multipliyer, 'Sun', 1, 5);
+	radiusGUI.add(multipliyer, 'Moon', 1, 5);*/
+
 	/*var mercuryGUI = gui.addFolder('Mercury');
 		mercuryGUI.add(text, 'speed', 1, 365);
 		var venusGUI = gui.addFolder('Venus');
