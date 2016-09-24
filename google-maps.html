@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #map {
+        width: 500px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+        async defer></script> -->
+    <canvas id="myCanvas"></canvas>
+    <script>
+    var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+	var img = new Image();
+	img.onload = function() {
+	    ctx.drawImage(img, 0, 0);
+	};
+	img.src = 'https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyA3LpL2suuBAYHBSEDGp7py7c3fr2Mvui4';
+	// function initMap() {
+ //        var mapDiv = document.getElementById('map');
+ //        var map = new google.maps.Map(mapDiv, {
+ //          center: {lat: 44.540, lng: -78.546},
+ //          zoom: 8
+ //        });
+ //      }
+    </script>
+  </body>
+</html>
