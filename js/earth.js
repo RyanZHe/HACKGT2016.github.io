@@ -33,6 +33,19 @@
 		Moon: 0.01160444322 * 5
 	};
 
+	var speeds =  {
+		Mercury: 0.018,
+		Venus: 0.018,
+		Earth: 0.018,
+		Mars: 0.018,
+		Jupiter: 0.018,
+		Saturn: 0.018,
+		Uranus: 0.018,
+		Neptune: 0.018,
+		Sun: 0.018,
+		Moon: 0.018
+	};
+
 	if (!Detector.webgl) {
 		Detector.addGetWebGLMessage(webglEl);
 		return;
@@ -50,7 +63,7 @@
 
 	var scene = new THREE.Scene();
 
-	var camera = new THREE.PerspectiveCamera(45, width / height, 0.0001, 1000000);
+	var camera = new THREE.PerspectiveCamera(45, width / height, 0.0001, 100000);
 	camera.position.z = 1.5;
 
 	var renderer = new THREE.WebGLRenderer();
@@ -58,7 +71,7 @@
 
 	controls = new THREE.OrbitControls(camera);
 	controls.minDistance = 0.509;
-	controls.maxDistance = 100;
+	controls.maxDistance = 10000;
 	controls.enablePan = false;
 
 	scene.add(new THREE.AmbientLight(0x333333));
@@ -76,7 +89,7 @@
 	scene.add(sphere);
 
 	var moon = createMoon(radiuses.Moon, segments);
-    moon.position.set(distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius);
+    moon.position.set(distances.Moon + radiuses.Moon + radius, 0, 0);
     moon.rotation.y = rotation;
     /*var moonOTL = createOutlineMesh(radiuses.Moon, segments);
     moonOTL.position.set(distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius);
@@ -85,7 +98,7 @@
     //scene.add(moonOTL);
 
     var sun1 = createSun(radiuses.Sun, segments);
-    sun1.position.set(distances.Earth, distances.Earth, distances.Earth);    
+    sun1.position.set(distances.Earth, 0, 0);    
     sun1.rotation.y = rotation;
     /*var sunOTL = createOutlineMesh(radiuses.Sun, segments);
     sunOTL.position.set(distances.Earth, distances.Earth, distances.Earth);
@@ -94,7 +107,7 @@
     //scene.add(sunOTL);
 
     var mercury = createMercury(radiuses.Mercury, segments);
-    mercury.position.set(10 - distances.Mercury, 10 - distances.Mercury, 10 - distances.Mercury);    
+    mercury.position.set(10 - distances.Mercury, 0, 0);    
     mercury.rotation.y = rotation;
     /*var mercuryOTL = createOutlineMesh(radiuses.Mercury, segments);
     mercuryOTL.position.set(10 - distances.Mercury, 10 - distances.Mercury, 10 - distances.Mercury);
@@ -103,7 +116,7 @@
     //scene.add(mercuryOTL);
 
     var venus = createVenus(radiuses.Venus, segments);
-    venus.position.set(10 - distances.Venus, 10 - distances.Venus, 10 - distances.Venus);    
+    venus.position.set(10 - distances.Venus, 0, 0);    
     venus.rotation.y = rotation;
     /*var venusOTL = createOutlineMesh(radiuses.Venus, segments);
     venusOTL.position.set(10 - distances.Venus, 10 - distances.Venus, 10 - distances.Venus);
@@ -112,7 +125,7 @@
     //scene.add(venusOTL);
 
     var mars = createMars(radiuses.Mars, segments);
-    mars.position.set(10 - distances.Mars, 10 - distances.Mars, 10 - distances.Mars);    
+    mars.position.set(10 - distances.Mars, 0, 0);    
     mars.rotation.y = rotation;
     /*var marsOTL = createOutlineMesh(radiuses.Mars, segments);
     marsOTL.position.set(10 - distances.Mars, 10 - distances.Mars, 10 - distances.Mars);
@@ -121,7 +134,7 @@
     //scene.add(marsOTL);
 
     var jupiter = createJupiter(radiuses.Jupiter, segments);
-    jupiter.position.set(10 - distances.Jupiter, 10 - distances.Jupiter, 10 - distances.Jupiter);    
+    jupiter.position.set(10 - distances.Jupiter, 0, 0);    
     jupiter.rotation.y = rotation;
     /*var jupiterOTL = createOutlineMesh(radiuses.Jupiter, segments);
     jupiterOTL.position.set(10 - distances.Jupiter, 10 - distances.Jupiter, 10 - distances.Jupiter);
@@ -130,7 +143,7 @@
     //scene.add(jupiterOTL);
 
     var saturn = createSaturn(radiuses.Saturn, segments);
-    saturn.position.set(10 - distances.Saturn, 10 - distances.Saturn, 10 - distances.Saturn);    
+    saturn.position.set(10 - distances.Saturn, 0, 0);    
     saturn.rotation.y = rotation;
     /*var saturnOTL = createOutlineMesh(radiuses.Saturn, segments);
     saturnOTL.position.set(10 - distances.Saturn, 10 - distances.Saturn, 10 - distances.Saturn);
@@ -139,7 +152,7 @@
     //scene.add(saturnOTL);
 
     var uranus = createUranus(radiuses.Uranus, segments);
-    uranus.position.set(10 - distances.Uranus, 10 - distances.Uranus, 10 - distances.Uranus);    
+    uranus.position.set(10 - distances.Uranus, 0, 0);    
     uranus.rotation.y = rotation;
     /*var uranusOTL = createOutlineMesh(radiuses.Uranus, segments);
     uranusOTL.position.set(10 - distances.Uranus, 10 - distances.Uranus, 10 - distances.Uranus);
@@ -148,7 +161,7 @@
     //scene.add(uranusOTL);
 
     var neptune = createNeptune(radiuses.Neptune, segments);
-    neptune.position.set(10 - distances.Neptune, 10 - distances.Neptune, 10 - distances.Neptune);    
+    neptune.position.set(10 - distances.Neptune, 0, 0);    
     neptune.rotation.y = rotation;
     /*var neptuneOTL = createOutlineMesh(radiuses.Neptune, segments);
     neptuneOTL.position.set(10 - distances.Neptune, 10 - distances.Neptune, 10 - distances.Neptune);
@@ -163,11 +176,10 @@
 	var stars = createStars(9000000, 64);
 	scene.add(stars);
 
-    var outlineMesh1 = createOutlineMesh(radius, segments);
+    /*var outlineMesh1 = createOutlineMesh(radius, segments);
     outlineMesh1.position = sphere.position;
     outlineMesh1.scale.multiplyScalar(1.01);
-    scene.add(outlineMesh1);
-
+    scene.add(outlineMesh1);*/
     var material = new THREE.MeshPhongMaterial( {map: THREE.ImageUtils.loadTexture('images/texture-atlas.jpg')} );
 
     var arrayURL = [];
@@ -183,8 +195,15 @@
 		//sphere.rotation.y += 0.0005;
 		//clouds.rotation += 0.0008;
 		cloud.rotation.y += 0.004;
-		sun1.rotation.y += 0.04;
-		moon.rotation.y += 0.004;
+		sun1.rotation.y += speeds.Sun;
+		moon.rotation.y += speeds.Moon;
+		mercury.rotation.y += speeds.Mercury;
+		venus.rotation.y += speeds.Venus;
+		sphere.rotation.y += speeds.Earth;
+		saturn.rotation.y += speeds.Saturn;
+		uranus.rotation.y += speeds.Uranus;
+		neptune.rotation.y += speeds.Neptune;
+
 		//var degree = Math.atan(moon.position.y/moon.position.x);
 		//moon.position.y = (distances.moon + radiuses.moon) * Math.sin(0.001 + degree);
 		//moon.position.x = (distances.moon + radiuses.moon) * Math.cos(0.001 + degree);
@@ -331,7 +350,7 @@
 
 	function createClouds(radius, segments) {
 		return new THREE.Mesh(
-			new THREE.SphereGeometry(radius + 0.00003, segments, segments),			
+			new THREE.SphereGeometry(radius + 0.003, segments, segments),			
 			new THREE.MeshPhongMaterial({
 				map:         THREE.ImageUtils.loadTexture('images/fair_clouds_4k.png'),
 				transparent: true
@@ -391,70 +410,34 @@
 		mouse.y = - ( event.clientY / window.innerHeight ) * 2 +1;   
 	}
 
-	/*function onDocumentMouseDown(event) {
-		event.preventDefault();
-		var vector = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, - (event.clientY / window.innerHeight) * 2 + 1, 1);
-		vector.unproject(vector, camera);
-
-		var raycaster1 = new THREE.Raycaster(camera.position, vector.sub(camera.position).normalize());
-		raycaster1.setFromCamera(mouse, camera);
-		//var raycaster = new THREE.Raycaster(camera.position, vector.sub(camera.position).nomalize());
-
-		var intersects = raycaster1.intersectObjects( scene.children );
-
-		if (intersects.length > 0) {
-			intersects[0].object.material.color.setHex(0xff0000);
-		}
-	}*/
-
-	/*function zoomIn() {
-		var sphereSupplement2 = new THREE.SphereGeometry(radius + 0.001 + 0.002, 17, 17, 0.953 * 5.55 - 0.3, 0.525, 0.95, 0.325);
-	    sphere2 = new THREE.Mesh(sphereSupplement2, new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('https://maps.googleapis.com/maps/api/staticmap?center=32,140&zoom=5&size=640x640&path=weight:3%7Ccolor:blue%7Cenc:{coaHnetiVjM??_SkM??~R&key=AIzaSyA3LpL2suuBAYHBSEDGp7py7c3fr2Mvui4')}));
-		scene.add(sphere2);
-		var sphereSupplement3 = new THREE.SphereGeometry(radius + 0.001 + 0.002, 17, 17, 0.953 * 5 - 0.3, 0.525, 0.95, 0.325);
-	    sphere3 = new THREE.Mesh(sphereSupplement3, new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('https://maps.googleapis.com/maps/api/staticmap?center=32,110&zoom=5&size=640x640&path=weight:3%7Ccolor:blue%7Cenc:{coaHnetiVjM??_SkM??~R&key=AIzaSyA3LpL2suuBAYHBSEDGp7py7c3fr2Mvui4')}));
-		scene.add(sphere3);
-		var sphereSupplement4 = new THREE.SphereGeometry(radius + 0.001 + 0.002, 17, 17, 0.953 * 5.55- 0.3, 0.525, 1.275, 0.325);
-	    sphere4 = new THREE.Mesh(sphereSupplement4, new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('https://maps.googleapis.com/maps/api/staticmap?center=7,140&zoom=5&size=640x640&path=weight:3%7Ccolor:blue%7Cenc:{coaHnetiVjM??_SkM??~R&key=AIzaSyA3LpL2suuBAYHBSEDGp7py7c3fr2Mvui4')}));
-		scene.add(sphere4);
-		var sphereSupplement5 = new THREE.SphereGeometry(radius + 0.001 + 0.002, 17, 17, 0.953 * 5 - 0.3, 0.525, 1.275, 0.325);
-	    sphere5 = new THREE.Mesh(sphereSupplement5, new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('https://maps.googleapis.com/maps/api/staticmap?center=7,110&zoom=5&size=640x640&path=weight:3%7Ccolor:blue%7Cenc:{coaHnetiVjM??_SkM??~R&key=AIzaSyA3LpL2suuBAYHBSEDGp7py7c3fr2Mvui4')}));
-		scene.add(sphere5);
-	}*/
-
-	/*function deleteR() {
-		scene.remove(sphere2);
-		scene.remove(sphere3);
-		scene.remove(sphere4);
-		scene.remove(sphere5);
-	}*/
-
-	/*function zoom(sphere, level) {
-		var indeces = sphere.name.slice(54,-64);
-		var split = indeces.indexOf(',');
-		var yAxis = parseInt(indeces.slice(0, split));
-		var xAxis = parseInt(indeces.slice(split + 1, indeces.length));
-		console.log(yAxis + " " + xAxis);
-		var urlAddress = sphere.name;
-		var sphereSupplement2 = new THREE.SphereGeometry(radius + 0.004, 17, 17, sphere.geometry.parameters.phiStart + (sphere.geometry.parameters.phiLength) / 2, (sphere.geometry.parameters.phiLength) / 2, sphere.geometry.parameters.thetaStart, sphere.geometry.parameters.thetaLength / 2);
-	    sphere2 = new THREE.Mesh(sphereSupplement2, new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('https://maps.googleapis.com/maps/api/staticmap?center='+ (yAxis + 13 * Math.pow(2, -(level - 5))) +','+ (xAxis + 14 * Math.pow(2, -(level - 5))) +'&zoom=' + level + '&size=640x640&key=AIzaSyA3LpL2suuBAYHBSEDGp7py7c3fr2Mvui4')}));
-		sphere2.name = 'https://maps.googleapis.com/maps/api/staticmap?center='+ (yAxis + 13 * Math.pow(2, -(level - 5))) +','+ (xAxis + 14 * Math.pow(2, -(level - 5))) +'&zoom=' + level + '&size=640x640&key=AIzaSyA3LpL2suuBAYHBSEDGp7py7c3fr2Mvui4';
-		scene.add(sphere2);
-		//console.log(sphere2.phiStart + " " + sphere2.thetaStart);
-		var sphereSupplement3 = new THREE.SphereGeometry(radius + 0.004, 17, 17, sphere.geometry.parameters.phiStart, (sphere.geometry.parameters.phiLength) / 2, sphere.geometry.parameters.thetaStart, sphere.geometry.parameters.thetaLength / 2);
-	    sphere3 = new THREE.Mesh(sphereSupplement3, new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('https://maps.googleapis.com/maps/api/staticmap?center='+ (yAxis + 13 * Math.pow(2, -(level - 5))) +','+ (xAxis - 14 * Math.pow(2, -(level - 5)))+'&zoom=' + level + '&size=640x640&key=AIzaSyA3LpL2suuBAYHBSEDGp7py7c3fr2Mvui4')}));
-		sphere3.name = 'https://maps.googleapis.com/maps/api/staticmap?center='+ (yAxis + 13 * Math.pow(2, -(level - 5))) +','+ (xAxis - 14 * Math.pow(2, -(level - 5)))+'&zoom=' + level + '&size=640x640&key=AIzaSyA3LpL2suuBAYHBSEDGp7py7c3fr2Mvui4';
-		scene.add(sphere3);
-		
-		var sphereSupplement4 = new THREE.SphereGeometry(radius + 0.004, 17, 17, sphere.geometry.parameters.phiStart + (sphere.geometry.parameters.phiLength) / 2, (sphere.geometry.parameters.phiLength) / 2, sphere.geometry.parameters.thetaStart + sphere.geometry.parameters.thetaLength / 2, sphere.geometry.parameters.thetaLength / 2);
-	    sphere4 = new THREE.Mesh(sphereSupplement4, new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('https://maps.googleapis.com/maps/api/staticmap?center='+ (yAxis - 13 * Math.pow(2, -(level - 5))) +','+ (xAxis + 14 * Math.pow(2, -(level - 5))) +'&zoom=' + level + '&size=640x640&key=AIzaSyA3LpL2suuBAYHBSEDGp7py7c3fr2Mvui4')}));
-		sphere4.name = 'https://maps.googleapis.com/maps/api/staticmap?center='+ (yAxis - 13 * Math.pow(2, -(level - 5))) +','+ (xAxis + 14 * Math.pow(2, -(level - 5))) +'&zoom=' + level + '&size=640x640&key=AIzaSyA3LpL2suuBAYHBSEDGp7py7c3fr2Mvui4';
-		scene.add(sphere4);
-		
-		var sphereSupplement5 = new THREE.SphereGeometry(radius + 0.004, 17, 17, sphere.geometry.parameters.phiStart, (sphere.geometry.parameters.phiLength) / 2, sphere.geometry.parameters.thetaStart + sphere.geometry.parameters.thetaLength / 2, sphere.geometry.parameters.thetaLength / 2);
-	    sphere5 = new THREE.Mesh(sphereSupplement5, new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('https://maps.googleapis.com/maps/api/staticmap?center='+ (yAxis - 13 * Math.pow(2, -(level - 5))) +','+ (xAxis - 14 * Math.pow(2, -(level - 5))) +'&zoom=' + level + '&size=640x640&key=AIzaSyA3LpL2suuBAYHBSEDGp7py7c3fr2Mvui4')}));
-		sphere5.name = 'https://maps.googleapis.com/maps/api/staticmap?center='+ (yAxis - 13 * Math.pow(2, -(level - 5))) +','+ (xAxis - 14 * Math.pow(2, -(level - 5))) +'&zoom=' + level + '&size=640x640&key=AIzaSyA3LpL2suuBAYHBSEDGp7py7c3fr2Mvui4';
-		scene.add(sphere5);
-		//console.log(sphere2);
-	}*/
+	var gui = new dat.GUI();
+	var speedGUI = gui.addFolder('speed');
+	speedGUI.add(speeds, 'Mercury', -0.006, 0.006);
+	speedGUI.add(speeds, 'Venus', -0.006, 0.006);
+	speedGUI.add(speeds, 'Earth', -0.006, 0.006);
+	speedGUI.add(speeds, 'Mars', -0.006, 0.006);
+	speedGUI.add(speeds, 'Jupiter', -0.006, 0.006);
+	speedGUI.add(speeds, 'Saturn', -0.006, 0.006);
+	speedGUI.add(speeds, 'Uranus', -0.006, 0.006);
+	speedGUI.add(speeds, 'Neptune', -0.006, 0.006);
+	speedGUI.add(speeds, 'Sun', -0.006, 0.006);
+	speedGUI.add(speeds, 'Moon', -0.006, 0.006);
+	/*var mercuryGUI = gui.addFolder('Mercury');
+		mercuryGUI.add(text, 'speed', 1, 365);
+		var venusGUI = gui.addFolder('Venus');
+		venusGUI.add(text, 'speed', 1, 365);
+		var earthGUI = gui.addFolder('Earth');
+		earthGUI.add(text, 'speed', 1, 365);
+		var marsGUI = gui.addFolder('Mars');
+		marsGUI.add(text, 'speed', 1, 365);
+		var jupiterGUI = gui.addFolder('Jupiter');
+		jupiterGUI.add(text, 'speed', 1, 365);
+		var saturnGUI = gui.addFolder('Saturn');
+		saturnGUI.add(text, 'speed', 1, 365);
+		var uranusGUI = gui.addFolder('Uranus');
+		uranusGUI.add(text, 'speed', 1, 365);
+		var neptuneGUI = gui.addFolder('Neptune');
+		neptuneGUI.add(text, 'speed', 1, 365);
+		var moonGUI = gui.addFolder("Moon");
+		moonGUI.add(text, 'speed', 1, 365);*/
 }());

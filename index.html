@@ -12,12 +12,52 @@
     </style>
 </head>
 <body>
+	<script type='text/javascript' src='js/DAT.GUI.min.js'></script>
+
 	<div id="webgl"></div>
 	<script src="js/three.min.js"></script>
 	<script src="js/Detector.js"></script>		
 	<script src="js/TrackballControls.js"></script>	
 	<script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
 	<script src="http://threejs.org/examples/js/renderers/Projector.js"></script>
-	<script src="js/earth.js"></script>  
-</body>
+	<script src="js/earth.js"></script>
+
+	<!-- GUI for experimenting with planets -->		
+	<!--<script>
+		var gui = new dat.GUI();
+		var sunGUI = gui.addFolder('Sun');
+		var sunSpeed = sunGUI.add(text, 'speed', 1, 365);
+		var mercuryGUI = gui.addFolder('Mercury');
+		mercuryGUI.add(text, 'speed', 1, 365);
+		var venusGUI = gui.addFolder('Venus');
+		venusGUI.add(text, 'speed', 1, 365);
+		var earthGUI = gui.addFolder('Earth');
+		earthGUI.add(text, 'speed', 1, 365);
+		var marsGUI = gui.addFolder('Mars');
+		marsGUI.add(text, 'speed', 1, 365);
+		var jupiterGUI = gui.addFolder('Jupiter');
+		jupiterGUI.add(text, 'speed', 1, 365);
+		var saturnGUI = gui.addFolder('Saturn');
+		saturnGUI.add(text, 'speed', 1, 365);
+		var uranusGUI = gui.addFolder('Uranus');
+		uranusGUI.add(text, 'speed', 1, 365);
+		var neptuneGUI = gui.addFolder('Neptune');
+		neptuneGUI.add(text, 'speed', 1, 365);
+		var moonGUI = gui.addFolder("Moon");
+		moonGUI.add(text, 'speed', 1, 365);
+	</script>-->
+
+	<!-- Code to display an information button and box when clicked. -->
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+	<link rel=stylesheet href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+	<link rel=stylesheet href="css/info.css"/>
+	<script src="js/info.js"></script>
+	<div id="infoButton"></div>
+	<div id="infoBox" title="Demo Information">
+	Experience the flow of universe with galaxy.io. Made with THREE.js, DAT.GUI, and Powered by Microsoft Acure.
+	</div>
+	<!-- ------------------------------------------------------------ -->
+	</body>
 </html>
