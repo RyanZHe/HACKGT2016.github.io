@@ -102,7 +102,6 @@
 	scene.add(sphere);
 
 	var moon = createMoon(radiuses.Moon * multipliyer.Moon, segments);
-    moon.position.set(distances.Moon + radiuses.Moon + radius, 0, 0);
     moon.rotation.y = rotation;
     /*var moonOTL = createOutlineMesh(radiuses.Moon, segments);
     moonOTL.position.set(distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius, distances.Moon + radiuses.Moon + radius);
@@ -217,9 +216,6 @@
 		uranus.rotation.y += speeds.Uranus;
 		neptune.rotation.y += speeds.Neptune;
 
-		//var degree = Math.atan(moon.position.y/moon.position.x);
-		//moon.position.y = (distances.moon + radiuses.moon) * Math.sin(0.001 + degree);
-		//moon.position.x = (distances.moon + radiuses.moon) * Math.cos(0.001 + degree);
 		// mesh.rotation.x += .04;
 		// mesh.rotation.y += .02;		
 		var frustum = new THREE.Frustum();
