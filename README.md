@@ -5,3 +5,5 @@ A web application built with Three.js, DAT.GUI, and Powered by Microsoft Azure.
 Become a part of the flow of the universe with galaxy.io.
 
 Learn about the solar system in an interactive environment.
+
+You can access the fully built website at HACKGT2016.github.io.
