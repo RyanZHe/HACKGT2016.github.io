@@ -9,11 +9,74 @@
 		.tm  { position: absolute; top: 10px; right: 10px; }
 		.webgl-error { font: 15px/30px monospace; text-align: center; color: #fff; margin: 50px; }
 		.webgl-error a { color: #fff; }
+		.sidenav {
+		    height: 100%;
+		    width: 0;
+		    position: fixed;
+		    z-index: 0;
+		    top: 0;
+		    left: 0;
+		    opacity: 0.5;
+		    background-color: black;
+		    overflow-x: hidden;
+		    transition: 0.5s;
+		    padding-top: 60px;
+		}
+
+		.sidenav a {
+		    padding: 8px 8px 8px 32px;
+		    text-decoration: none;
+		    font-size: 25px;
+		    color: #99ccff;
+		    display: block;
+		    transition: 0.3s
+		}
+
+		.sidenav a:hover, .offcanvas a:focus{
+		    color: white;
+		}
+
+		.sidenav .closebtn {
+		    position: absolute;
+		    top: 0;
+		    right: 15px;
+		    font-size: 30px;
+		    margin-left: 50px;
+		}
+
+		@media screen and (max-height: 450px) {
+		  .sidenav {padding-top: 15px;}
+		  .sidenav a {font-size: 18px;}
+		}
     </style>
 </head>
 <body>
 	<script type='text/javascript' src='js/DAT.GUI.min.js'></script>
+	<div id="mySidenav" class="sidenav">
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	  <a href="https://en.wikipedia.org/wiki/Sun">Sun</a>
+	  <a href="https://en.wikipedia.org/wiki/Mercury">Mercury</a>
+	  <a href="https://en.wikipedia.org/wiki/Venus">Venus</a>
+	  <a href="https://en.wikipedia.org/wiki/Earth">Earth</a>
+	  <a href="https://en.wikipedia.org/wiki/Mars">Mars</a>
+	  <a href="https://en.wikipedia.org/wiki/Jupiter">Jupiter</a>
+	  <a href="https://en.wikipedia.org/wiki/Saturn">Saturn</a>
+	  <a href="https://en.wikipedia.org/wiki/Uranus">Uranus</a>
+	  <a href="https://en.wikipedia.org/wiki/Neptune">Neptune</a>
+	  <a href="https://en.wikipedia.org/wiki/Solar_System">Solar System</a>
+	</div>
 
+	<button type="button" style="font-size:30px;cursor:pointer;background-color:black;opacity:0.6" onclick="openNav()"><font color="white">&#9776; Information</font></button>
+
+	<script>
+		function openNav() {
+		    document.getElementById("mySidenav").style.width = "250px";
+		}
+
+		function closeNav() {
+		    document.getElementById("mySidenav").style.width = "0";
+		}
+	</script>
 	<div id="webgl"></div>
 	<script src="js/three.min.js"></script>
 	<script src="js/Detector.js"></script>		
@@ -21,32 +84,6 @@
 	<script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
 	<script src="http://threejs.org/examples/js/renderers/Projector.js"></script>
 	<script src="js/earth.js"></script>
-
-	<!-- GUI for experimenting with planets -->		
-	<!--<script>
-		var gui = new dat.GUI();
-		var sunGUI = gui.addFolder('Sun');
-		var sunSpeed = sunGUI.add(text, 'speed', 1, 365);
-		var mercuryGUI = gui.addFolder('Mercury');
-		mercuryGUI.add(text, 'speed', 1, 365);
-		var venusGUI = gui.addFolder('Venus');
-		venusGUI.add(text, 'speed', 1, 365);
-		var earthGUI = gui.addFolder('Earth');
-		earthGUI.add(text, 'speed', 1, 365);
-		var marsGUI = gui.addFolder('Mars');
-		marsGUI.add(text, 'speed', 1, 365);
-		var jupiterGUI = gui.addFolder('Jupiter');
-		jupiterGUI.add(text, 'speed', 1, 365);
-		var saturnGUI = gui.addFolder('Saturn');
-		saturnGUI.add(text, 'speed', 1, 365);
-		var uranusGUI = gui.addFolder('Uranus');
-		uranusGUI.add(text, 'speed', 1, 365);
-		var neptuneGUI = gui.addFolder('Neptune');
-		neptuneGUI.add(text, 'speed', 1, 365);
-		var moonGUI = gui.addFolder("Moon");
-		moonGUI.add(text, 'speed', 1, 365);
-	</script>-->
-
 	<!-- Code to display an information button and box when clicked. -->
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -55,10 +92,12 @@
 	<link rel=stylesheet href="css/info.css"/>
 	<script src="js/info.js"></script>
 	<div id="infoButton"></div>
-	<div id="infoBox" title="Demo Information" font="Verdana">
+	<div id="infoBox" title="Demo Information" font="Verdana" onclick="openNav()">
 	<p>Experience the flow of <i>UNIVERSE</i> with <strong>galaxy.io</strong>.</p> 
 	<p>Made with <b>THREE.js</b>, <b>DAT.GUI</b>, and Powered by <b>Microsoft Acure</b>.</p>
 	</div>
+
+	
 	<!-- ------------------------------------------------------------ -->
 	</body>
 </html>
